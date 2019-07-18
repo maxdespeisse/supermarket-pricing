@@ -14,6 +14,7 @@ public class Product {
 	
 	Product(String name, BigDecimal price, PricingMethod pricingMethod) {
 		if (price == null) throw new IllegalArgumentException("price cannot be null");
+		if (price.compareTo(BigDecimal.ZERO) < 0) throw new IllegalArgumentException("price cannot be negative");
 		if (name == null) throw new IllegalArgumentException("name cannot be null");
 		this.name = name;
 		this.price = price;

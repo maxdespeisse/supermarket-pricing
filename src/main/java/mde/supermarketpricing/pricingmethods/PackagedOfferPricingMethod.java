@@ -9,7 +9,7 @@ public class PackagedOfferPricingMethod implements PricingMethod {
 	private final BigDecimal packagePrice;
 	
 	public PackagedOfferPricingMethod(int quantityToBuy, BigDecimal packagePrice) {
-		if (quantityToBuy < 1) throw new IllegalArgumentException("quantityToBuy must be greater than 1");
+		if (quantityToBuy < 1) throw new IllegalArgumentException("quantityToBuy must be equal or greater than 1");
 		if (packagePrice == null) throw new IllegalArgumentException("packagePrice cannot be null");
 		
 		this.quantityToBuy = quantityToBuy;
