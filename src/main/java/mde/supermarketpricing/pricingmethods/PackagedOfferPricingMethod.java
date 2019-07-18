@@ -8,7 +8,7 @@ public class PackagedOfferPricingMethod implements PricingMethod {
 	
 	private final BigDecimal packagePrice;
 	
-	public PackagedOfferPricingMethod(int quantityToBuy, BigDecimal packagePrice) {
+	public PackagedOfferPricingMethod(final int quantityToBuy, final BigDecimal packagePrice) {
 		if (quantityToBuy < 1) throw new IllegalArgumentException("quantityToBuy must be equal or greater than 1");
 		if (packagePrice == null) throw new IllegalArgumentException("packagePrice cannot be null");
 		
@@ -17,9 +17,10 @@ public class PackagedOfferPricingMethod implements PricingMethod {
 	}
 
 	@Override
-	public BigDecimal computePrice(BigDecimal unitPrice, int quantity) {
-		int numberOfPackage = quantity / quantityToBuy;
-		int quantityOutOfTheOffer = quantity % quantityToBuy;
+	public BigDecimal computePrice(final BigDecimal unitPrice, final double quantity) {
+		int quantityRoundedUp = (int) Math.ceil(quantity);
+		int numberOfPackage = quantityRoundedUp / quantityToBuy;
+		int quantityOutOfTheOffer = quantityRoundedUp % quantityToBuy;
 		
 		BigDecimal priceInTheOffer = packagePrice.multiply(BigDecimal.valueOf(numberOfPackage));
 		BigDecimal priceOutOfTheOffer = unitPrice.multiply(BigDecimal.valueOf(quantityOutOfTheOffer));

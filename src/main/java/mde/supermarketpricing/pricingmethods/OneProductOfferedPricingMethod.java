@@ -6,18 +6,19 @@ public class OneProductOfferedPricingMethod implements PricingMethod {
 	
 	private final int quantityToBuy;
 	
-	public OneProductOfferedPricingMethod(int quantityToBuy) {
+	public OneProductOfferedPricingMethod(final int quantityToBuy) {
 		if (quantityToBuy < 1) throw new IllegalArgumentException("quantityToBuy must be equal or greater than 1");
 		this.quantityToBuy = quantityToBuy;
 	}
 
 	@Override
-	public BigDecimal computePrice(BigDecimal unitPrice, int quantity) {
-		if (quantity > quantityToBuy) {
-			final int offeredQuantity = quantity / (quantityToBuy + 1);
-			return unitPrice.multiply(BigDecimal.valueOf((quantity - offeredQuantity)));
+	public BigDecimal computePrice(final BigDecimal unitPrice, final double quantity) {
+		final int quantityRoundedUp = (int) Math.ceil(quantity);
+		if (quantityRoundedUp > quantityToBuy) {
+			final int offeredQuantity = quantityRoundedUp / (quantityToBuy + 1);
+			return unitPrice.multiply(BigDecimal.valueOf((quantityRoundedUp - offeredQuantity)));
 		}
-		return unitPrice.multiply(BigDecimal.valueOf((quantity)));
+		return unitPrice.multiply(BigDecimal.valueOf((quantityRoundedUp)));
 	}
 
 }

@@ -7,17 +7,17 @@ import java.util.Map;
 
 public class Basket {
 
-	private Map<Product, Integer> productsMap = new HashMap<Product, Integer>();
+	private final Map<Product, Double> productsMap = new HashMap<Product, Double>();
 
-	public Map<Product, Integer> getProductsMap() {
+	public Map<Product, Double> getProductsMap() {
 		return productsMap;
 	}
 
 	public void addProduct(final Product product) {
 		if (product == null) throw new IllegalArgumentException("product cannot be null");
-		final Integer productQuantity = productsMap.get(product);
-		final Integer newProductQuantity = productQuantity != null ? productQuantity + 1 : 1;
-		productsMap.put(product, newProductQuantity);
+		final Double amount = productsMap.get(product);
+		final Double newAmount = amount != null ? amount + 1 : 1;
+		productsMap.put(product, newAmount);
 	}
 
 	public Double getTotalPrice() {

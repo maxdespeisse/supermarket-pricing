@@ -29,7 +29,7 @@ public class Product {
 		return price;
 	}
 	
-	public BigDecimal computePrice(int quantity) {
-		return pricingMethod.computePrice(price, quantity);
+	public BigDecimal computePrice(final double amount) {
+		return pricingMethod.computePrice(price, amount);
 	}
 }
