@@ -16,10 +16,10 @@ public class Basket {
 	}
 
 	public void addProduct(final Product product) {
-		addProduct(product, 1);
+		addProductByAmount(product, 1);
 	}
 
-	public void addProduct(final Product product, final double amountToAdd) {
+	public void addProductByAmount(final Product product, final double amountToAdd) {
 		if (product == null)
 			throw new IllegalArgumentException("product cannot be null");
 		final Double previousAmount = productsMap.get(product);
@@ -27,9 +27,9 @@ public class Basket {
 		productsMap.put(product, newAmount);
 	}
 
-	public void addProduct(final Product product, final double amountToAddInSpecialUnit, final SpecialUnit specialUnit) {
+	public void addProductBySpecialUnitAmount(final Product product, final double amountToAddInSpecialUnit, final SpecialUnit specialUnit) {
 		final Double amountToAdd = specialUnit.convert(amountToAddInSpecialUnit);
-		addProduct(product, amountToAdd);
+		addProductByAmount(product, amountToAdd);
 	}
 
 	public Double getTotalPrice() {

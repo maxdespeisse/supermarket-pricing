@@ -87,7 +87,7 @@ public class BasketTest {
 	public void shouldPurchase3PoundsAndAHalfAndPayUnitPrice() {
 		Product tomatoes = new Product("Tomatoes", BigDecimal.valueOf(4), basicPricingMethod);
 		Basket basket = new Basket();
-		basket.addProduct(tomatoes, 3.5);
+		basket.addProductByAmount(tomatoes, 3.5);
 
 		assertEquals(Double.valueOf(14), basket.getTotalPrice());
 	}
@@ -96,7 +96,7 @@ public class BasketTest {
 	public void shouldPurchase4OuncesAndPayUnitPrice() {
 		Product tomatoes = new Product("Tomatoes", BigDecimal.valueOf(2), basicPricingMethod);
 		Basket basket = new Basket();
-		basket.addProduct(tomatoes, 4, SpecialUnit.OUNCE);
+		basket.addProductBySpecialUnitAmount(tomatoes, 4, SpecialUnit.OUNCE);
 
 		assertEquals(Double.valueOf(0.5), basket.getTotalPrice());
 	}
@@ -105,7 +105,7 @@ public class BasketTest {
 	public void shouldPurchase4OuncesAndRoundPriceUp() {
 		Product tomatoes = new Product("Tomatoes", BigDecimal.valueOf(1.99), basicPricingMethod);
 		Basket basket = new Basket();
-		basket.addProduct(tomatoes, 4, SpecialUnit.OUNCE);
+		basket.addProductBySpecialUnitAmount(tomatoes, 4, SpecialUnit.OUNCE);
 
 		assertEquals(Double.valueOf(0.5), basket.getTotalPrice());
 	}
@@ -114,7 +114,7 @@ public class BasketTest {
 	public void shouldPurchaseTwoBagsOfTomatoes() {
 		Product tomatoes = new Product("Tomatoes", BigDecimal.valueOf(1.99), basicPricingMethod);
 		Basket basket = new Basket();
-		basket.addProduct(tomatoes, 4, SpecialUnit.OUNCE);
+		basket.addProductBySpecialUnitAmount(tomatoes, 4, SpecialUnit.OUNCE);
 
 		assertEquals(Double.valueOf(0.5), basket.getTotalPrice());
 	}
@@ -128,9 +128,9 @@ public class BasketTest {
 
 		Basket basket = new Basket();
 		basket.addProduct(canOfBeans);
-		basket.addProduct(tomato, 3);
-		basket.addProduct(kiwiWith4For5DollarOffer, 5);
-		basket.addProduct(shampooWithOneFreeFor2Bought, 3);
+		basket.addProductByAmount(tomato, 3);
+		basket.addProductByAmount(kiwiWith4For5DollarOffer, 5);
+		basket.addProductByAmount(shampooWithOneFreeFor2Bought, 3);
 
 		assertEquals(Double.valueOf(21.12), basket.getTotalPrice());
 	}
@@ -140,11 +140,11 @@ public class BasketTest {
 		Product tomato = new Product("Tomato", BigDecimal.valueOf(1.99), new BasicPricingMethod());
 
 		Basket basketWithTwoBags = new Basket();
-		basketWithTwoBags.addProduct(tomato, 1.6);
-		basketWithTwoBags.addProduct(tomato, 2.4);
+		basketWithTwoBags.addProductByAmount(tomato, 1.6);
+		basketWithTwoBags.addProductByAmount(tomato, 2.4);
 
 		Basket basketWithOneLargeBag = new Basket();
-		basketWithOneLargeBag.addProduct(tomato, 4);
+		basketWithOneLargeBag.addProductByAmount(tomato, 4);
 
 		assertEquals(basketWithTwoBags.getTotalPrice(), basketWithOneLargeBag.getTotalPrice());
 	}
