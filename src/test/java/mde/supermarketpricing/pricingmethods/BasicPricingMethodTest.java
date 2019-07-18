@@ -31,5 +31,12 @@ public class BasicPricingMethodTest {
 
 		assertEquals(Double.valueOf(5), (Double) totalPrice.setScale(2, RoundingMode.CEILING).doubleValue());
 	}
+	
+	@Test
+	public void shouldPayForThreePoundsAndAHalf() {
+		BigDecimal totalPrice = basicMethod.computePrice(BigDecimal.valueOf(10), 3.5);
+		
+		assertEquals(Double.valueOf(35), (Double) totalPrice.setScale(2, RoundingMode.CEILING).doubleValue());
+	}
 
 }
