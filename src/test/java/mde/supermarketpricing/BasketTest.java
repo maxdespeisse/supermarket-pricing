@@ -148,5 +148,21 @@ public class BasketTest {
 
 		assertEquals(basketWithTwoBags.getTotalPrice(), basketWithOneLargeBag.getTotalPrice());
 	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldThrowExceptionWhenAmountIsNegative() {
+		Product tomato = new Product("Tomato", BigDecimal.valueOf(1.99), new BasicPricingMethod());
+		
+		Basket basketWithTwoBags = new Basket();
+		basketWithTwoBags.addProductByAmount(tomato, -1);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldThrowExceptionWhenAmountIsZero() {
+		Product tomato = new Product("Tomato", BigDecimal.valueOf(1.99), new BasicPricingMethod());
+		
+		Basket basketWithTwoBags = new Basket();
+		basketWithTwoBags.addProductByAmount(tomato, 0);
+	}
 	
 }

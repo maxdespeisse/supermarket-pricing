@@ -22,6 +22,8 @@ public class Basket {
 	public void addProductByAmount(final Product product, final double amountToAdd) {
 		if (product == null)
 			throw new IllegalArgumentException("product cannot be null");
+		if (Double.compare(0, amountToAdd) >= 0)
+			throw new IllegalArgumentException("amount must be greater than 0");
 		final Double previousAmount = productsMap.get(product);
 		final Double newAmount = previousAmount != null ? previousAmount + amountToAdd : amountToAdd;
 		productsMap.put(product, newAmount);
