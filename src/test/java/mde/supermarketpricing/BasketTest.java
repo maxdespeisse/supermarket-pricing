@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 
-import mde.supermarketpricing.convertor.SpecialUnit;
+import mde.supermarketpricing.convertors.OunceToPoundConvertor;
 import org.junit.Test;
 
 import mde.supermarketpricing.pricingmethods.BasicPricingMethod;
@@ -96,7 +96,7 @@ public class BasketTest {
 	public void shouldPurchase4OuncesAndPayUnitPrice() {
 		Product tomatoes = new Product("Tomatoes", BigDecimal.valueOf(2), basicPricingMethod);
 		Basket basket = new Basket();
-		basket.addProductBySpecialUnitAmount(tomatoes, 4, SpecialUnit.OUNCE);
+		basket.addProductBySpecialUnitAmount(tomatoes, 4, new OunceToPoundConvertor());
 
 		assertEquals(Double.valueOf(0.5), basket.getTotalPrice());
 	}
@@ -105,7 +105,7 @@ public class BasketTest {
 	public void shouldPurchase4OuncesAndRoundPriceUp() {
 		Product tomatoes = new Product("Tomatoes", BigDecimal.valueOf(1.99), basicPricingMethod);
 		Basket basket = new Basket();
-		basket.addProductBySpecialUnitAmount(tomatoes, 4, SpecialUnit.OUNCE);
+		basket.addProductBySpecialUnitAmount(tomatoes, 4, new OunceToPoundConvertor());
 
 		assertEquals(Double.valueOf(0.5), basket.getTotalPrice());
 	}
@@ -114,7 +114,7 @@ public class BasketTest {
 	public void shouldPurchaseTwoBagsOfTomatoes() {
 		Product tomatoes = new Product("Tomatoes", BigDecimal.valueOf(1.99), basicPricingMethod);
 		Basket basket = new Basket();
-		basket.addProductBySpecialUnitAmount(tomatoes, 4, SpecialUnit.OUNCE);
+		basket.addProductBySpecialUnitAmount(tomatoes, 4, new OunceToPoundConvertor());
 
 		assertEquals(Double.valueOf(0.5), basket.getTotalPrice());
 	}

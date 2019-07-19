@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.Map;
 
-import mde.supermarketpricing.convertor.SpecialUnit;
+import mde.supermarketpricing.convertors.UnitConvertor;
 
 public class Basket {
 
@@ -27,8 +27,8 @@ public class Basket {
 		productsMap.put(product, newAmount);
 	}
 
-	public void addProductBySpecialUnitAmount(final Product product, final double amountToAddInSpecialUnit, final SpecialUnit specialUnit) {
-		final Double amountToAdd = specialUnit.convert(amountToAddInSpecialUnit);
+	public void addProductBySpecialUnitAmount(final Product product, final double amountToAddInSpecialUnit, final UnitConvertor convertor) {
+		final Double amountToAdd = convertor.convert(amountToAddInSpecialUnit);
 		addProductByAmount(product, amountToAdd);
 	}
 
